@@ -13,7 +13,8 @@ webdriver.get(url)
 h3_elements = webdriver.find_elements(By.CSS_SELECTOR, 'h3')
 
 for h3_element in h3_elements:
-    h3_content = h3_element.text
-    print(h3_content)
+    h3_content = h3_element.text.strip().replace('­', '')
+    if len(h3_content) > 0:
+        print(h3_content)
 
 webdriver.quit()
