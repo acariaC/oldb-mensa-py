@@ -4,7 +4,7 @@ Webscraping application for getting todays menu at 'Mensa Uhlhornsweg' at Carl-v
 
 
 ## TBD:
-  - sometimes, if the main dish has a long name the second line is dropped: include it
-  - differentiate between Ausgabe Eins, Zwei, Drei and Culinarium
-  - format the output in .json
-  - make sure that Siri can access the output through a shortcut
+ - if a string ends on ',' append the following string and remove the following string from the list
+ - format the output in .json
+ - make sure that Siri can access the output through a shortcut
+ - add special alerts for 'Bayrische Creme' and 'Germknödel mit Kirschfüllung'
