@@ -1,3 +1,4 @@
+import re
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
@@ -6,15 +7,16 @@ url = 'https://oldenburg.my-mensa.de/essen.php?v=5611274&hyp=1&lang=de&mensa=uh#
 
 options = Options()
 options.add_argument("--headless")
-options.add_argument("--window-size=1920,1080")
-webdriver = webdriver.Chrome(options=options)
+driver = webdriver.Chrome(options=options)
 
-webdriver.get(url)
-h3_elements = webdriver.find_elements(By.CSS_SELECTOR, 'h3')
+driver.get(url)
 
-for h3_element in h3_elements:
-    h3_content = h3_element.text.strip().replace('­', '')
-    if len(h3_content) > 0:
-        print(h3_content)
+elements = driver.find_elements(By.CSS_SELECTOR, '.ui-li-heading.text2share, .text2share:not(.next)')
 
-webdriver.quit()
+for element in elements:
+    element = element.text.strip().replace('­', '')
+    element = re.sub(r'\(.*\)', '', element)
+    if element:
+        print(element)
+
+driver.quit()
