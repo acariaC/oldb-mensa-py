@@ -54,6 +54,7 @@ def scrape(data = "", ausgabe = "ausgabe-eins", date = "2023-05-08"):
 def scrape_mensa():
     url = 'https://oldenburg.my-mensa.de/essen.php?v=5611274&hyp=1&lang=de&mensa=uh#uh_tag_1'
 
+
     #Set agent to Firefox
     http = urllib3.PoolManager(headers={'User-Agent': 'Mozilla/5.0'})
     response = http.request('GET', url)
@@ -132,3 +133,22 @@ atexit.register(lambda: cron.shutdown(wait=False))
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0')
+=======
+    mensa = scrape(url)
+
+    menu = {}
+    current_category = None
+
+
+
+    for item in mensa:
+        if item.strip().isupper():
+            current_category = item.strip()
+            menu[current_category] = []
+        else:
+            if current_category:
+                menu[current_category].append(item.strip())
+
+    import json
+
+    print(json.dumps(menu))
