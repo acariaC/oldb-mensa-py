@@ -27,6 +27,21 @@ def scrape(url):
 
 if __name__ == '__main__':
     url = 'https://oldenburg.my-mensa.de/essen.php?v=5611274&hyp=1&lang=de&mensa=uh#uh_tag_1'
-    menu = scrape(url)
-    for item in menu:
-        print(item)
+    mensa = scrape(url)
+
+    menu = {}
+    current_category = None
+
+
+
+    for item in mensa:
+        if item.strip().isupper():
+            current_category = item.strip()
+            menu[current_category] = []
+        else:
+            if current_category:
+                menu[current_category].append(item.strip())
+
+    import json
+
+    print(json.dumps(menu))
