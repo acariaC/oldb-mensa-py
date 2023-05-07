@@ -8,5 +8,5 @@ Webscraping application for getting todays menu at 'Mensa Uhlhornsweg' at Carl-v
 
 ## TBD:
  - make sure that Siri can access the output through a shortcut
- - add special alerts for 'Bayrische Creme' and 'Germknödel mit Kirschfüllung'
+ - add special alerts for personal favorite menu items
  - add selection within Terminal for 'Uhlhornsweg', 'Wechloy'
