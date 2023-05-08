@@ -125,7 +125,7 @@ cron.start()
 
 
 # Run every hour
-@cron.scheduled_job('interval', minutes=30)
+@cron.scheduled_job('interval', minutes=1)
 def job_function():
     print("Scraping mensa")
     scrape_mensa()
