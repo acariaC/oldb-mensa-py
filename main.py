@@ -109,7 +109,32 @@ def get_mensa():
         return json.dumps({})
 
 
+@app.route('/api/v1/mensaPlain')
+def get_mensaPlain():
+    import datetime
+    date = datetime.datetime.now().strftime("%Y-%m-%d")
+
+    if os.path.exists('output/{date}.json'.format(date=date)):
+        with open('output/{date}.json'.format(date=date), encoding="utf-8") as file:
+            data = json.load(file)
+
+        menu = []
+        for outer_key, outer_value in data.items():
+            # print(outer_key)
+            menu.append(outer_key)
+
+            for inner_key in outer_value.keys():
+                # print(inner_key)
+                menu.append(inner_key)
+            # print()
+
+
+        return menu
+    else:
+        return json.dumps({})
+
 # resource to get data from specific day, return empty json if not exists
+
 @app.route('/api/v1/mensa/<date>')
 def get_mensa_date(date):
     # Check if file exists
